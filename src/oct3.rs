@@ -7,6 +7,9 @@ impl Solution {
         nums.sort_unstable();
         for i in 0..nums.len() - 1 {
             for j in i + 1..nums.len() {
+                if nums[j] - nums[i] > k {
+                    break;
+                }
                 if nums[j] - nums[i] == k {
                     set.insert((nums[i], nums[j]));
                 }
