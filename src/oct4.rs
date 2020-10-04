@@ -6,12 +6,15 @@ impl Solution {
     pub fn remove_covered_intervals(mut intervals: Vec<Vec<i32>>) -> i32 {
         let mut skip = HashSet::new();
         for i in 0..intervals.len() {
-            for j in 0..intervals.len() {
+            for j in (i + 1)..intervals.len() {
                 if skip.contains(&j) || i == j {
                     continue;
                 }
                 if intervals[i][0] <= intervals[j][0] && intervals[i][1] >= intervals[j][1] {
                     skip.insert(j);
+                }
+                if intervals[j][0] <= intervals[i][0] && intervals[j][1] >= intervals[i][1] {
+                    skip.insert(i);
                 }
             }
         }
