@@ -5,8 +5,8 @@ impl Solution {
         if n == 0 {
             return 1;
         }
-        let steps: i32 = (n as f64).log2() as i32 + 1;
-        let mask = 2i32.pow(steps as u32) - 1;
+        let bits: i32 = (n as f64).log2() as i32 + 1;
+        let mask = 2i32.pow(bits as u32) - 1;
         n ^ mask
     }
 }
