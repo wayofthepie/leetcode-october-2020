@@ -27,10 +27,11 @@ impl Solution {
         val: i32,
     ) -> Option<Rc<RefCell<TreeNode>>> {
         let node = Solution::build_node(val);
-        if root == None {
-            return node;
+        if let Some(mut root) = root {
+            Some(Solution::insert_rec(&mut root, val))
+        } else {
+            node
         }
-        Some(Solution::insert_rec(&mut root.unwrap(), val))
     }
 
     fn insert_rec(root: &mut Rc<RefCell<TreeNode>>, val: i32) -> Rc<RefCell<TreeNode>> {
