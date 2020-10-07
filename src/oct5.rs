@@ -2,11 +2,11 @@ struct Solution;
 
 impl Solution {
     pub fn bitwise_complement(n: i32) -> i32 {
-        let mut mask = 1;
-        let steps: i32 = (n as f64).log2() as i32 + 1;
-        for i in 1..=steps {
-            mask = 2i32.pow(i as u32) - 1;
+        if n == 0 {
+            return 1;
         }
+        let steps: i32 = (n as f64).log2() as i32 + 1;
+        let mask = 2i32.pow(steps as u32) - 1;
         n ^ mask
     }
 }
@@ -14,6 +14,13 @@ impl Solution {
 #[cfg(test)]
 mod test {
     use super::Solution;
+
+    #[test]
+    fn check_zero() {
+        let n = 0;
+        let answer = Solution::bitwise_complement(n);
+        assert_eq!(answer, 1);
+    }
 
     #[test]
     fn example1() {
