@@ -59,25 +59,3 @@ impl Solution {
         length
     }
 }
-
-#[cfg(test)]
-mod test {
-    use super::{ListNode, Solution};
-
-    #[test]
-    fn example() {
-        let head = Box::new(ListNode {
-            next: Some(Box::new(ListNode {
-                next: Some(Box::new(ListNode {
-                    next: Some(Box::new(ListNode { next: None, val: 4 })),
-                    val: 3,
-                })),
-                val: 2,
-            })),
-            val: 1,
-        });
-        let answer = Solution::rotate_right(Some(head), 41);
-        println!("{:#?}", answer);
-        assert!(false);
-    }
-}
