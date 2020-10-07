@@ -56,17 +56,3 @@ impl Solution {
         Some(Rc::new(RefCell::new(TreeNode::new(val))))
     }
 }
-
-#[cfg(test)]
-mod test {
-    use std::{cell::RefCell, rc::Rc};
-
-    use super::{Solution, TreeNode};
-
-    #[test]
-    fn example() {
-        let node = None;
-        println!("{:#?}", Solution::insert_into_bst(node, 9));
-        assert!(false);
-    }
-}
