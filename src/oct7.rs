@@ -40,29 +40,26 @@ impl Solution {
             build_pointer.next = Some(Box::new(ListNode::new(node.val)));
             build_pointer = build_pointer.next.as_mut().unwrap();
         }
-        if let Some(mut next) = node.next.as_mut() {
+        Some(node.next.to_owned().map_or(head, |mut next| {
             Solution::build_final_list(&mut next, builder)
-        } else {
-            Some(head)
-        }
+        }))
     }
 
-    fn build_final_list(node: &mut Box<ListNode>, builder: Box<ListNode>) -> Option<Box<ListNode>> {
-        let mut head = node.clone();
-        let mut build_pointer = &mut head;
-        while build_pointer.next.is_some() {
-            build_pointer = build_pointer.next.as_mut().unwrap();
+    fn build_final_list(node: &mut Box<ListNode>, builder: Box<ListNode>) -> Box<ListNode> {
+        let mut build_pointer = node.as_mut();
+        while let Some(ref mut next) = build_pointer.next {
+            build_pointer = next;
         }
         build_pointer.next = Some(builder);
-        Some(head)
+        node.to_owned()
     }
 
     fn get_length(head: &mut Box<ListNode>) -> i32 {
         let mut last = head.as_mut();
         let mut length = 1;
-        while last.next.is_some() {
+        while let Some(ref mut next) = last.next {
             length += 1;
-            last = last.next.as_mut().unwrap();
+            last = next;
         }
         length
     }
