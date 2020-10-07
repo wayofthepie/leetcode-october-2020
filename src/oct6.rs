@@ -26,7 +26,7 @@ impl Solution {
         root: Option<Rc<RefCell<TreeNode>>>,
         val: i32,
     ) -> Option<Rc<RefCell<TreeNode>>> {
-        let node = Some(Rc::new(RefCell::new(TreeNode::new(val))));
+        let node = Solution::build_node(val);
         if root == None {
             return node;
         }
