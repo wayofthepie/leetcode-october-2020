@@ -17,6 +17,14 @@ impl ListNode {
 struct Solution;
 
 impl Solution {
+    /// The algorithm here is as follows:
+    ///
+    /// 1. Compute the number of moves, m, using: m = n - (k % n) - 1, where n is the length of the list
+    ///    and k is the number of rotations.
+    /// 2. Build a new list with the first m nodes, setting the last nodes next pointer to None.
+    /// 3. Keeping the head of the last (n - m) nodes, move to the end and point the last node
+    ///    to the list created in step 2. Return the head of this list.
+    ///
     pub fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
         if k == 0 {
             return head;
