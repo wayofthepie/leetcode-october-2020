@@ -31,7 +31,7 @@ impl Solution {
             if target == nums[index] {
                 break index as i32;
             }
-            if index >= max || index <= min {
+            if index == max || index == min {
                 break -1;
             }
         }
