@@ -21,14 +21,13 @@ impl Solution {
             match target.cmp(&nums[index]) {
                 Ordering::Less => {
                     max = index;
-                    index = (max + min) / 2;
                 }
                 Ordering::Greater => {
                     min = index;
-                    index = (max + min) / 2;
                 }
                 _ => (),
             }
+            index = (max + min) / 2;
             if target == nums[index] {
                 break index as i32;
             }
