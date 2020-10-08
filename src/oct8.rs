@@ -17,24 +17,15 @@ impl Solution {
             return max as i32;
         }
         let mut index = length / 2;
-        loop {
+        while index < max && index > min {
             match target.cmp(&nums[index]) {
-                Ordering::Less => {
-                    max = index;
-                }
-                Ordering::Greater => {
-                    min = index;
-                }
-                _ => (),
+                Ordering::Less => max = index,
+                Ordering::Greater => min = index,
+                Ordering::Equal => return index as i32,
             }
             index = (max + min) / 2;
-            if target == nums[index] {
-                break index as i32;
-            }
-            if index == max || index == min {
-                break -1;
-            }
         }
+        -1
     }
 }
 
