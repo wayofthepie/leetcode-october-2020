@@ -1,10 +1,9 @@
 struct Solution;
 impl Solution {
     pub fn search(nums: Vec<i32>, target: i32) -> i32 {
-        match nums.binary_search(&target) {
-            Ok(index) => index as i32,
-            Err(_) => -1,
-        }
+        nums.binary_search(&target)
+            .map(|index| index as i32)
+            .unwrap_or(-1)
     }
 }
 
