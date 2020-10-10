@@ -1,22 +1,19 @@
-use std::collections::HashSet;
 struct Solution;
 impl Solution {
     pub fn find_min_arrow_shots(mut points: Vec<Vec<i32>>) -> i32 {
-        points.sort_by(|a, b| a[1].partial_cmp(&b[1]).unwrap());
-        let mut set = HashSet::new();
-        let mut n = 0;
-        for p1 in &points {
-            if set.contains(p1) {
-                continue;
-            }
-            for p2 in &points {
-                if p2[0] <= p1[1] && p2[1] >= p1[0] {
-                    set.insert(p2);
-                }
-            }
-            n += 1
+        if points.is_empty() {
+            return 0;
         }
-        n
+        points.sort_by(|a, b| a[1].partial_cmp(&b[1]).unwrap());
+        let mut current = &points[0];
+        points[1..].iter().fold(1, |n, point| {
+            if point[0] > current[1] {
+                current = point;
+                n + 1
+            } else {
+                n
+            }
+        })
     }
 }
 
@@ -97,5 +94,12 @@ mod test {
         ];
         let answer = Solution::find_min_arrow_shots(points);
         assert_eq!(answer, 2);
+    }
+
+    #[test]
+    fn should_handle_empty_case() {
+        let points = vec![];
+        let answer = Solution::find_min_arrow_shots(points);
+        assert_eq!(answer, 0);
     }
 }
