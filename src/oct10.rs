@@ -4,7 +4,7 @@ impl Solution {
         if points.is_empty() {
             return 0;
         }
-        points.sort_by(|a, b| a[1].partial_cmp(&b[1]).unwrap());
+        points.sort_by(|a, b| a[1].cmp(&b[1]));
         let mut current = &points[0];
         points[1..].iter().fold(1, |n, point| {
             if point[0] > current[1] {
