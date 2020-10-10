@@ -5,15 +5,16 @@ impl Solution {
             return 0;
         }
         points.sort_by_key(|v| v[1]);
-        let mut current = &points[0];
-        points[1..].iter().fold(1, |n, point| {
-            if point[0] > current[1] {
-                current = point;
-                n + 1
-            } else {
-                n
-            }
-        })
+        points[1..]
+            .iter()
+            .fold((1, &points[0]), |(n, current), point| {
+                if point[0] > current[1] {
+                    (n + 1, point)
+                } else {
+                    (n, current)
+                }
+            })
+            .0
     }
 }
 
