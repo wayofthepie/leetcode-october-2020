@@ -18,15 +18,15 @@ impl Solution {
                 (diff, a_freq, count)
             },
         );
-        Solution::same_string_and_can_swap(&a, &b, &a_freq)
-            || Solution::same_letters_with_two_diffs(&a, &b, &diff, count)
+        Solution::equal_and_can_swap(&a, &b, &a_freq)
+            || Solution::unequal_and_can_swap(&a, &b, &diff, count)
     }
 
-    fn same_string_and_can_swap(a: &str, b: &str, a_freq: &Vec<i32>) -> bool {
+    fn equal_and_can_swap(a: &str, b: &str, a_freq: &Vec<i32>) -> bool {
         a == b && a_freq.iter().any(|freq| freq >= &2)
     }
 
-    fn same_letters_with_two_diffs(a: &str, b: &str, diff: &Vec<i32>, count: i32) -> bool {
+    fn unequal_and_can_swap(a: &str, b: &str, diff: &Vec<i32>, count: i32) -> bool {
         diff.iter().all(|&freq| freq == 0) && a != b && count == 2
     }
 }
